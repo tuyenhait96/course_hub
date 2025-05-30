@@ -1,8 +1,7 @@
 'use client'
 
 export default function MyCoursesPage() {
-  // In a real application, you would fetch the user's purchased courses
-  const purchasedCourses = []; // Mock data for now
+  const purchasedCourses = [];
 
   return (
     <div>
@@ -16,4 +15,4 @@ export default function MyCoursesPage() {
       )}
     </div>
   );
-} 
+}

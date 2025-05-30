@@ -1,22 +1,36 @@
+import { readFileSync } from 'fs';
+import { join } from 'path';
 import CheckoutFormClient from './checkout-form-client';
 
-// Mock course data - needed for generateStaticParams
-// In a real app, fetch or import this data
-const allCoursesData: any = {
-  "1": { id: "1", title: "Introduction to Next.js" /* ... other course props */ },
-  "2": { id: "2", title: "Advanced Tailwind CSS" /* ... other course props */ },
-  "3": { id: "3", title: "Full-Stack Web Development with MERN" /* ... other course props */ },
-  // Add all course IDs that should have a checkout page
-};
+async function getCourseData() {
+  try {
+    const coursesPath = join(process.cwd(), 'public', 'data', 'course.json');
+    const fileContents = readFileSync(coursesPath, 'utf8');
+    const courses = JSON.parse(fileContents);
+
+    const allCoursesData: any = {};
+    courses.forEach((course: any) => {
+      allCoursesData[course.id] = {
+        id: course.id,
+        title: course.title,
+        description: course.description,
+      };
+    });
+
+    return allCoursesData;
+  } catch (error) {
+    console.error('Error reading course data:', error);
+    return {};
+  }
+}
 
 export async function generateStaticParams() {
+  const allCoursesData = await getCourseData();
   return Object.keys(allCoursesData).map((courseId) => ({
     courseId: courseId,
   }));
 }
 
 export default function CheckoutPage() {
-  // This page now only handles static generation and renders the client component.
-  // The courseId is available to CheckoutFormClient via useParams().
   return <CheckoutFormClient />;
-} 
+}

@@ -1,10 +1,16 @@
-'use client'
+export async function generateStaticParams() {
+  return [
+    { pageId: '1' },
+    { pageId: '2' },
+  ]
+}
 
-import { useParams } from 'next/navigation'
+interface EditLandingPageProps {
+  params: { pageId: string }
+}
 
-export default function EditLandingPage() {
-  const params = useParams()
-  const pageId = params.pageId
+export default function EditLandingPage({ params }: EditLandingPageProps) {
+  const { pageId } = params
 
   return (
     <div>
@@ -13,4 +19,4 @@ export default function EditLandingPage() {
       <p>Form for editing landing page {pageId} will be here.</p>
     </div>
   )
-} 
+}

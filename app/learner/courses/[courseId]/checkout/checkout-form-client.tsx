@@ -1,11 +1,11 @@
 'use client'
-import { useParams } from 'next/navigation'
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useParams, useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 const checkoutSchema = yup.object().shape({
   name: yup.string().required('Full name is required'),
@@ -17,7 +17,7 @@ const checkoutSchema = yup.object().shape({
 export default function CheckoutFormClient() {
   const params = useParams()
   const courseId = params.courseId as string; // Ensure courseId is treated as string
-
+  const router = useRouter()
   const form = useForm({
     resolver: yupResolver(checkoutSchema),
     defaultValues: {
@@ -29,9 +29,7 @@ export default function CheckoutFormClient() {
   });
 
   const onSubmit = (data: yup.InferType<typeof checkoutSchema>) => {
-    console.log('Checkout data:', data, 'for courseId:', courseId);
-    // Handle checkout logic here
-    alert(`Checkout for course ${courseId} successful!`); // Mock success
+    router.push("/learner/courses/purchased")
   };
 
   return (
@@ -97,4 +95,4 @@ export default function CheckoutFormClient() {
       </Form>
     </div>
   )
-} 
+}

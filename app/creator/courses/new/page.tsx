@@ -1,14 +1,14 @@
 'use client'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ArrowLeft, Plus, Trash2, BookOpen, Video, DollarSign } from 'lucide-react'
+import { Textarea } from '@/components/ui/textarea'
+import { ArrowLeft, BookOpen, DollarSign, Plus, Trash2, Video } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 type Lesson = {
   id: string
@@ -20,7 +20,7 @@ type Lesson = {
 export default function NewCoursePage() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  
+
   const [course, setCourse] = useState({
     title: '',
     description: '',
@@ -32,13 +32,10 @@ export default function NewCoursePage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    // In a real app, this would save to an API
-    console.log('Creating course:', course)
-    
+
     // Redirect back to courses page
     router.push('/creator/courses')
   }
@@ -46,11 +43,11 @@ export default function NewCoursePage() {
   const addLesson = () => {
     setCourse(prev => ({
       ...prev,
-      lessons: [...prev.lessons, { 
-        id: Date.now().toString(), 
-        title: '', 
-        description: '', 
-        videoUrl: '' 
+      lessons: [...prev.lessons, {
+        id: Date.now().toString(),
+        title: '',
+        description: '',
+        videoUrl: ''
       }]
     }))
   }
@@ -58,7 +55,7 @@ export default function NewCoursePage() {
   const updateLesson = (index: number, field: string, value: string) => {
     setCourse(prev => ({
       ...prev,
-      lessons: prev.lessons.map((lesson, i) => 
+      lessons: prev.lessons.map((lesson, i) =>
         i === index ? { ...lesson, [field]: value } : lesson
       )
     }))
@@ -110,7 +107,7 @@ export default function NewCoursePage() {
                     required
                   />
                 </div>
-                
+
                 <div>
                   <Label htmlFor="description" className="text-lg font-semibold text-gray-700">Description *</Label>
                   <Textarea
@@ -123,7 +120,7 @@ export default function NewCoursePage() {
                     required
                   />
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="price" className="text-lg font-semibold text-gray-700 flex items-center gap-2">
@@ -142,7 +139,7 @@ export default function NewCoursePage() {
                       required
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="status" className="text-lg font-semibold text-gray-700">Publication Status</Label>
                     <Select value={course.status} onValueChange={(value: 'draft' | 'published') => setCourse(prev => ({ ...prev, status: value }))}>
@@ -167,9 +164,9 @@ export default function NewCoursePage() {
                     <Video className="h-5 w-5" />
                     Course Lessons
                   </CardTitle>
-                  <Button 
+                  <Button
                     type="button"
-                    onClick={addLesson} 
+                    onClick={addLesson}
                     variant="secondary"
                     size="sm"
                     className="bg-white text-green-600 hover:bg-gray-100"
@@ -202,7 +199,7 @@ export default function NewCoursePage() {
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </div>
-                        
+
                         <div className="space-y-4">
                           <Input
                             value={lesson.title}
@@ -233,8 +230,8 @@ export default function NewCoursePage() {
 
             {/* Submit Section */}
             <div className="flex gap-4 justify-center pt-6">
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 size="lg"
                 disabled={isSubmitting || !course.title || !course.description}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg"

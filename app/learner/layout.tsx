@@ -1,9 +1,9 @@
 'use client'
 import { useAuth } from '@/app/context/AuthContext'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 
 export default function LearnerLayout({
   children,
@@ -28,10 +28,10 @@ export default function LearnerLayout({
       <nav className="bg-white shadow-md">
         <div className="container mx-auto px-6 py-3 flex justify-between items-center">
           <Link href="/learner/courses" className="text-xl font-semibold text-gray-700">
-            LearnHub
+            CourseHub
           </Link>
           <div>
-            <Link href="/learner/my-courses" className="text-gray-700 mx-2">
+            <Link href="/learner/courses/purchaseds" className="text-gray-700 mx-2">
               My Courses
             </Link>
             <Button variant="ghost" onClick={logout} className="text-gray-700">
@@ -45,4 +45,4 @@ export default function LearnerLayout({
       </main>
     </div>
   )
-} 
+}

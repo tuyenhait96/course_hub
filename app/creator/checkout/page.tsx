@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -11,6 +12,7 @@ import { ArrowLeft, CreditCard, Wallet, Building } from 'lucide-react'
 import Link from 'next/link'
 
 export default function CheckoutPage() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,7 +40,13 @@ export default function CheckoutPage() {
     e.preventDefault()
     // In a real app, this would process the payment
     console.log('Processing order:', formData)
-    alert('Order submitted successfully! (This is a demo)')
+    
+    // Simulate successful payment and redirect to purchased courses
+    setTimeout(() => {
+      router.push('/learner/courses/purchased?from=payment')
+    }, 1000)
+    
+    alert('Payment processing... You will be redirected to your courses.')
   }
 
   const paymentMethods = [

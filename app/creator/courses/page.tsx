@@ -1,8 +1,8 @@
 'use client'
+import { useAuth } from "@/app/context/AuthContext"
+import { CourseTable } from "@/components/creator/CourseTable"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { CourseTable } from "@/components/creator/CourseTable"
-import { useAuth } from "@/app/context/AuthContext"
 import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -46,8 +46,6 @@ export default function CoursesPage() {
 
   const handleDeleteCourse = (courseId: string) => {
     setCourses(prevCourses => prevCourses.filter(course => course.id !== courseId))
-    // In a real application, you would also call an API to delete the course
-    console.log(`Course ${courseId} deleted`)
   }
 
   if (loading || !user) {

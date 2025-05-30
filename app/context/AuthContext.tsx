@@ -33,7 +33,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const login = async (email: string, password: string) => {
-    // Mock login logic
     const mockUser = {
       id: '1',
       email,
@@ -46,7 +45,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const register = async (email: string, password: string, name: string, role: string) => {
-    // Mock registration logic
     const mockUser = {
       id: '1',
       email,
