@@ -1,0 +1,26 @@
+[
+    {
+      "id": "course1",
+      "title": "Next.js for Beginners",
+      "description": "Learn the fundamentals of Next.js and build amazing web applications.",
+      "creatorId": "user1",
+      "price": 49.99,
+      "lessons": [
+        { "id": "lesson1", "title": "Introduction to Next.js", "description": "What is Next.js and why use it?", "videoUrl": "https://www.youtube.com/embed/fmj9yG2I0L8", "documentUrl": "/documents/nextjs-intro.pdf" },
+        { "id": "lesson2", "title": "Pages and Routing", "description": "Understanding the App Router.", "videoUrl": "https://www.youtube.com/embed/g_3t0jV2gKo", "documentUrl": "/documents/routing.pdf" },
+        { "id": "lesson3", "title": "Data Fetching", "description": "Server Components vs. Client Components.", "videoUrl": "https://www.youtube.com/embed/T01g1OH6W14", "documentUrl": "/documents/data-fetching.pdf" },
+        { "id": "lesson4", "title": "Styling with Tailwind CSS", "description": "Integrating Tailwind CSS.", "videoUrl": "https://www.youtube.com/embed/Lp6sA1HHoPY", "documentUrl": "/documents/tailwind.pdf" },
+        { "id": "lesson5", "title": "Deployment", "description": "Deploying your Next.js app.", "videoUrl": "https://www.youtube.com/embed/xBudc_Afjxo", "documentUrl": "/documents/deployment.pdf" }
+      ]
+    },
+    {
+      "id": "course2",
+      "title": "Advanced Tailwind CSS",
+      "description": "Master Tailwind CSS for beautiful and responsive UIs.",
+      "creatorId": "user1",
+      "price": 79.99,
+      "lessons": [
+        { "id": "lessonA", "title": "Customization", "description": "Deep dive into tailwind.config.js.", "videoUrl": "https://www.youtube.com/embed/Lp6sA1HHoPY", "documentUrl": "/documents/tailwind-custom.pdf" }
+      ]
+    }
+  ]

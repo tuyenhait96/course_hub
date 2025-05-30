@@ -1,0 +1,16 @@
+[
+    {
+      "id": "learner",
+      "email": "creator@example.com",
+      "password": "password123",
+      "name": "Course Creator One",
+      "role": "creator"
+    },
+    {
+      "id": "admin",
+      "email": "learner@example.com",
+      "password": "password123",
+      "name": "Curious Learner",
+      "role": "learner"
+    }
+  ]

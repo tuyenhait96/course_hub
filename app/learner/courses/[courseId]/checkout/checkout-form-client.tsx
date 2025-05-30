@@ -1,0 +1,100 @@
+'use client'
+import { useParams } from 'next/navigation'
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+
+const checkoutSchema = yup.object().shape({
+  name: yup.string().required('Full name is required'),
+  phone: yup.string().required('Phone number is required'),
+  address: yup.string().required('Address is required'),
+  paymentMethod: yup.string().required('Payment method is required'),
+});
+
+export default function CheckoutFormClient() {
+  const params = useParams()
+  const courseId = params.courseId as string; // Ensure courseId is treated as string
+
+  const form = useForm({
+    resolver: yupResolver(checkoutSchema),
+    defaultValues: {
+      name: '',
+      phone: '',
+      address: '',
+      paymentMethod: '',
+    },
+  });
+
+  const onSubmit = (data: yup.InferType<typeof checkoutSchema>) => {
+    console.log('Checkout data:', data, 'for courseId:', courseId);
+    // Handle checkout logic here
+    alert(`Checkout for course ${courseId} successful!`); // Mock success
+  };
+
+  return (
+    <div className="max-w-2xl mx-auto py-8">
+      <h1 className="text-3xl font-semibold mb-8">Checkout for Course {courseId}</h1>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Full Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="John Doe" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Phone Number</FormLabel>
+                <FormControl>
+                  <Input placeholder="+1234567890" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="address"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Address</FormLabel>
+                <FormControl>
+                  <Input placeholder="123 Main St, Anytown, USA" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="paymentMethod"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Payment Method</FormLabel>
+                <FormControl>
+                  {/* Replace with actual payment method selection (e.g., Stripe, PayPal) */}
+                  <Input placeholder="Credit Card / PayPal" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="w-full">Complete Purchase</Button>
+        </form>
+      </Form>
+    </div>
+  )
+} 
