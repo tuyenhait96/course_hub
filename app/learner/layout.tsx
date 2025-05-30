@@ -31,7 +31,7 @@ export default function LearnerLayout({
             CourseHub
           </Link>
           <div>
-            <Link href="/learner/courses/purchaseds" className="text-gray-700 mx-2">
+            <Link href="/learner/courses/purchased" className="text-gray-700 mx-2">
               My Courses
             </Link>
             <Button variant="ghost" onClick={logout} className="text-gray-700">
